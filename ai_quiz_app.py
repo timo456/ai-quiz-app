@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import time
 from datetime import datetime
+import random
 
 # 題庫載入
 df = pd.read_csv('ai_questions_parsed.csv', encoding='utf-8-sig')
@@ -16,11 +17,13 @@ if 'score' not in st.session_state:
     st.session_state.answers = []  # 答題紀錄
     st.session_state.start_time = time.time()
     st.session_state.user_id = f"User_{datetime.now().strftime('%H%M%S')}"  # 匿名 ID
+    st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)  # 隨機題目順序
 
 st.title("🧠 AI 考題小測驗遊戲")
 
 if st.session_state.q_index < total_questions:
-    row = df.iloc[st.session_state.q_index]
+    idx = st.session_state.shuffled_indices[st.session_state.q_index]
+    row = df.iloc[idx]
     st.markdown(f"**第 {st.session_state.q_index + 1} 題 / {total_questions}**\n\n{row['question']}")
 
     if not st.session_state.answered:
@@ -88,4 +91,5 @@ else:
         st.session_state.answers = []
         st.session_state.start_time = time.time()
         st.session_state.user_id = f"User_{datetime.now().strftime('%H%M%S')}"
+        st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)
         st.rerun()
