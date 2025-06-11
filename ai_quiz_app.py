@@ -27,7 +27,7 @@ if st.session_state.q_index < 10:
             else:
                 st.error(f"❌ 答錯了，正確答案是 {row['answer']}")
             st.session_state.q_index += 1
-            st.experimental_rerun()
+            st.rerun()
 else:
     st.subheader(f"🎉 測驗結束！你答對了 {st.session_state.score} / 10 題")
     if st.button("🔁 再玩一次"):
