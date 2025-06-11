@@ -3,7 +3,7 @@ import pandas as pd
 import random
 
 # 題庫載入
-df = pd.read_csv('ai_questions.csv')
+df = pd.read_csv('ai_questions_prased.csv')
 
 # 初始化狀態
 if 'score' not in st.session_state:
