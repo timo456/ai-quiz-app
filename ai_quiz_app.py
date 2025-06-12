@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import time
+import json
+import os
 from datetime import datetime
 import random
 
@@ -8,16 +10,33 @@ import random
 df = pd.read_csv('ai_questions_parsed.csv', encoding='utf-8-sig')
 total_questions = len(df)
 
-# 初始化狀態
-if 'score' not in st.session_state:
-    st.session_state.score = 0
-    st.session_state.q_index = 0
-    st.session_state.answered = False
-    st.session_state.selected_option = None
-    st.session_state.answers = []  # 答題紀錄
-    st.session_state.start_time = time.time()
-    st.session_state.user_id = f"User_{datetime.now().strftime('%H%M%S')}"  # 匿名 ID
-    st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)  # 隨機題目順序
+# 🔰 步驟 1: 讓使用者輸入暱稱（只跑一次）
+if 'user_id' not in st.session_state:
+    st.title("👤 請先輸入暱稱開始遊戲")
+    name = st.text_input("請輸入你的暱稱：")
+    if st.button("🎮 開始測驗") and name:
+        st.session_state.user_id = name
+        st.rerun()
+    st.stop()
+
+user_id = st.session_state.user_id
+progress_file = f"quiz_progress_{user_id}.json"
+
+# 🔰 步驟 2: 嘗試讀取進度
+if 'q_index' not in st.session_state:
+    if os.path.exists(progress_file):
+        with open(progress_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            st.session_state.update(data)
+    else:
+        # 初始化狀態
+        st.session_state.score = 0
+        st.session_state.q_index = 0
+        st.session_state.answered = False
+        st.session_state.selected_option = None
+        st.session_state.answers = []
+        st.session_state.start_time = time.time()
+        st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)
 
 st.title("🧠 AI 考題小測驗遊戲")
 
@@ -51,8 +70,11 @@ if st.session_state.q_index < total_questions:
                 st.session_state.answered = True
                 st.session_state.selected_option = opt
 
+                # ✅ 寫入進度檔
+                with open(progress_file, 'w', encoding='utf-8') as f:
+                    json.dump(dict(st.session_state), f, ensure_ascii=False)
+
     else:
-        # 顯示答題結果
         if st.session_state.selected_option == row['answer']:
             st.success("✅ 答對了！")
         else:
@@ -63,33 +85,23 @@ if st.session_state.q_index < total_questions:
             st.session_state.q_index += 1
             st.session_state.answered = False
             st.session_state.selected_option = None
+            with open(progress_file, 'w', encoding='utf-8') as f:
+                json.dump(dict(st.session_state), f, ensure_ascii=False)
             st.rerun()
 
 else:
     st.balloons()
     st.subheader(f"🎉 測驗結束！你總共答對了 {st.session_state.score} / {total_questions} 題")
-    
-    # 顯示答題紀錄
-    st.markdown(f"## 🧾 {st.session_state.user_id} 的答題紀錄")
+
+    st.markdown(f"## 🧾 {user_id} 的答題紀錄")
     df_result = pd.DataFrame(st.session_state.answers)
     st.dataframe(df_result, use_container_width=True)
 
-    # 提供下載按鈕
     csv = df_result.to_csv(index=False, encoding='utf-8-sig')
-    st.download_button(
-        label="📥 下載作答紀錄 CSV",
-        data=csv,
-        file_name=f"{st.session_state.user_id}_quiz_result.csv",
-        mime='text/csv'
-    )
+    st.download_button("📥 下載作答紀錄 CSV", data=csv, file_name=f"{user_id}_quiz_result.csv", mime='text/csv')
 
     if st.button("🔁 再玩一次"):
-        st.session_state.score = 0
-        st.session_state.q_index = 0
-        st.session_state.answered = False
-        st.session_state.selected_option = None
-        st.session_state.answers = []
-        st.session_state.start_time = time.time()
-        st.session_state.user_id = f"User_{datetime.now().strftime('%H%M%S')}"
-        st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)
+        os.remove(progress_file)  # 刪除紀錄檔
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
         st.rerun()
