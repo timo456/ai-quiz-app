@@ -6,7 +6,7 @@ import random
 import json
 import os
 
-MAX_QUESTIONS_PER_SESSION = 10  # ✅ 每輪最多幾題
+MAX_QUESTIONS_PER_SESSION = 30  # ✅ 每輪最多幾題
 
 # 題庫載入（需包含 answer、option_A~F、explanation）
 df = pd.read_csv('ai_questions_fixed.csv', encoding='utf-8-sig')
