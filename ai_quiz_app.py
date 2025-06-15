@@ -28,16 +28,51 @@ if not st.session_state.user_id:
     st.stop()
 
 # 選擇模式
+# ⬇️ 選單邏輯：選擇模式 or 查看排行榜
 if not st.session_state.mode:
     st.title("📘 請選擇模式")
+
     if st.button("✅ 完整測驗"):
         st.session_state.mode = 'full'
         st.rerun()
+
     if os.path.exists(f"quiz_wrong_{st.session_state.user_id}.json"):
         if st.button("🧠 錯題複習"):
             st.session_state.mode = 'review'
             st.rerun()
+
+    if st.button("🏆 查看排行榜"):
+        st.session_state.mode = 'leaderboard'
+        st.rerun()
+
     st.stop()
+
+# ⬇️ 顯示排行榜畫面
+elif st.session_state.mode == 'leaderboard':
+    st.title("🏆 排行榜")
+    leaderboard_path = "leaderboard.json"
+
+    if not os.path.exists(leaderboard_path):
+        st.info("暫無任何紀錄")
+        if st.button("⬅ 返回選單"):
+            st.session_state.mode = None
+            st.rerun()
+        st.stop()
+
+    with open(leaderboard_path, 'r', encoding='utf-8') as f:
+        leaderboard = json.load(f)
+
+    df_leader = pd.DataFrame(leaderboard)
+    df_leader = df_leader.sort_values(
+        by=["score", "accuracy", "time_spent_sec"],
+        ascending=[False, False, True]
+    ).head(10)
+
+    st.dataframe(df_leader.reset_index(drop=True), use_container_width=True)
+
+    if st.button("⬅ 返回選單"):
+        st.session_state.mode = None
+        st.rerun()
 
 # 題目初始化（支援錯題與題數上限，不重出做過題）
 if 'shuffled_indices' not in st.session_state:
@@ -129,6 +164,27 @@ if st.session_state.q_index < total:
 else:
     st.balloons()
     st.subheader(f"🎉 測驗結束！你總共答對了 {st.session_state.score} / {total} 題")
+    # ✅ 儲存排行榜分數紀錄
+    leaderboard_path = "leaderboard.json"
+    entry = {
+        "user": st.session_state.user_id,
+        "score": st.session_state.score,
+        "total": total,
+        "accuracy": round(st.session_state.score / total * 100, 1),
+        "time_spent_sec": int(time.time() - st.session_state.start_time),
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    if os.path.exists(leaderboard_path):
+        with open(leaderboard_path, 'r', encoding='utf-8') as f:
+            leaderboard = json.load(f)
+    else:
+        leaderboard = []
+
+    leaderboard.append(entry)
+    with open(leaderboard_path, 'w', encoding='utf-8') as f:
+        json.dump(leaderboard, f, ensure_ascii=False, indent=2)
+
 
     # 錯題紀錄
     if st.session_state.mode == 'full':
