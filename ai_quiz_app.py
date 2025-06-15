@@ -6,9 +6,7 @@ import random
 import json
 import os
 
-MAX_QUESTIONS_PER_SESSION = 30  # ✅ 每輪最多幾題
-
-# 題庫載入（需包含 answer、option_A~F、explanation）
+# 題庫載入
 df = pd.read_csv('ai_questions_fixed.csv', encoding='utf-8-sig')
 total_questions = len(df)
 
@@ -18,7 +16,7 @@ if 'mode' not in st.session_state:
 if 'user_id' not in st.session_state:
     st.session_state.user_id = ""
 
-# 登入
+# 登入階段
 if not st.session_state.user_id:
     st.title("🔐 請輸入暱稱開始測驗")
     nickname = st.text_input("請輸入你的暱稱：")
@@ -27,70 +25,56 @@ if not st.session_state.user_id:
         st.rerun()
     st.stop()
 
+# 顯示排行榜選項 + 顯示完成進度
+done_path = f"quiz_done_{st.session_state.user_id}.json"
+if not os.path.exists(done_path):
+    with open(done_path, 'w', encoding='utf-8') as f:
+        json.dump([], f)
+with open(done_path, 'r', encoding='utf-8') as f:
+    done_ids = set(json.load(f))
+st.sidebar.info(f"📚 題庫完成進度：{len(done_ids)} / {len(df)} 題")
+
 # 選擇模式
-# ⬇️ 選單邏輯：選擇模式 or 查看排行榜
 if not st.session_state.mode:
     st.title("📘 請選擇模式")
-
     if st.button("✅ 完整測驗"):
         st.session_state.mode = 'full'
         st.rerun()
-
     if os.path.exists(f"quiz_wrong_{st.session_state.user_id}.json"):
         if st.button("🧠 錯題複習"):
             st.session_state.mode = 'review'
             st.rerun()
-
     if st.button("🏆 查看排行榜"):
         st.session_state.mode = 'leaderboard'
         st.rerun()
-
     st.stop()
 
-# ⬇️ 顯示排行榜畫面
-elif st.session_state.mode == 'leaderboard':
+# 顯示排行榜畫面
+if st.session_state.mode == 'leaderboard':
     st.title("🏆 排行榜")
-    leaderboard_path = "leaderboard.json"
-
-    if not os.path.exists(leaderboard_path):
-        st.info("暫無任何紀錄")
-        if st.button("⬅ 返回選單"):
-            st.session_state.mode = None
-            st.rerun()
-        st.stop()
-
-    with open(leaderboard_path, 'r', encoding='utf-8') as f:
-        leaderboard = json.load(f)
-
-    df_leader = pd.DataFrame(leaderboard)
-    df_leader = df_leader.sort_values(
-        by=["score", "accuracy", "time_spent_sec"],
-        ascending=[False, False, True]
-    ).head(10)
-
-    st.dataframe(df_leader.reset_index(drop=True), use_container_width=True)
-
-    if st.button("⬅ 返回選單"):
-        st.session_state.mode = None
+    if os.path.exists("leaderboard.json"):
+        with open("leaderboard.json", "r", encoding="utf-8") as f:
+            leaderboard = json.load(f)
+        df_leaderboard = pd.DataFrame(leaderboard)
+        df_leaderboard = df_leaderboard.sort_values(by='score', ascending=False).head(10)
+        st.dataframe(df_leaderboard)
+    else:
+        st.info("目前還沒有任何人上榜，快來挑戰吧！")
+    if st.button("🔙 回主畫面"):
+        del st.session_state.mode
         st.rerun()
+    st.stop()
 
-# 題目初始化（支援錯題與題數上限，不重出做過題）
+# 初始化題目
 if 'shuffled_indices' not in st.session_state:
-    done_path = f"quiz_done_{st.session_state.user_id}.json"
-    done_set = set()
-    if os.path.exists(done_path):
-        with open(done_path, 'r', encoding='utf-8') as f:
-            done_set = set(json.load(f))
-
+    available_indices = [i for i in range(total_questions) if int(df.iloc[i]['id']) not in done_ids]
     if st.session_state.mode == 'full':
-        all_indices = list(set(range(total_questions)) - done_set)
-        random.shuffle(all_indices)
+        st.session_state.shuffled_indices = random.sample(available_indices, min(30, len(available_indices)))
     elif st.session_state.mode == 'review':
         with open(f"quiz_wrong_{st.session_state.user_id}.json", 'r', encoding='utf-8') as f:
-            all_indices = json.load(f)
-        random.shuffle(all_indices)
+            st.session_state.shuffled_indices = json.load(f)
+        random.shuffle(st.session_state.shuffled_indices)
 
-    st.session_state.shuffled_indices = all_indices[:MAX_QUESTIONS_PER_SESSION]
     st.session_state.q_index = 0
     st.session_state.score = 0
     st.session_state.answered = False
@@ -98,7 +82,7 @@ if 'shuffled_indices' not in st.session_state:
     st.session_state.answers = []
     st.session_state.start_time = time.time()
 
-# 測驗主畫面
+# 顯示測驗畫面
 st.title("🧠 AI 考題小測驗遊戲")
 total = len(st.session_state.shuffled_indices)
 
@@ -107,9 +91,14 @@ if st.session_state.q_index < total:
     row = df.iloc[idx]
     correct_answer_set = set(row['answer'].split(','))
 
-    st.markdown(f"**第 {st.session_state.q_index + 1} 題 / {total}**\n\n{row['question']}")
+    st.markdown(f"""
+    **第 {st.session_state.q_index + 1} 題 / {total}**
 
-    # 顯示選項 A~F
+    {row['question']}
+    """)
+    progress = (st.session_state.q_index + 1) / total
+    st.progress(progress, text=f"📘 剩下 {total - st.session_state.q_index - 1} 題")
+
     options = [opt for opt in ['A', 'B', 'C', 'D', 'E', 'F'] if pd.notna(row.get(f'option_{opt}')) and row[f'option_{opt}']]
     multiselect_items = [f"{opt}. {row[f'option_{opt}']}" for opt in options]
     selected = st.multiselect("請選擇答案：", multiselect_items, key=f"q{idx}")
@@ -122,9 +111,13 @@ if st.session_state.q_index < total:
             st.session_state.selected_options = selected_keys
             st.session_state.answered = True
 
+            # ✅ 紀錄完成題號
+            done_ids.add(int(row['id']))
+            with open(done_path, 'w', encoding='utf-8') as f:
+                json.dump(list(done_ids), f, ensure_ascii=False)
+
             if is_correct:
                 st.session_state.score += 1
-                # 若為錯題複習，答對即移除
                 if st.session_state.mode == 'review':
                     wrong_path = f"quiz_wrong_{st.session_state.user_id}.json"
                     if os.path.exists(wrong_path):
@@ -151,10 +144,6 @@ if st.session_state.q_index < total:
         else:
             st.error(f"❌ 答錯了，正確答案是：{latest['正確答案']}")
 
-        # ✅ 顯示解說
-        if pd.notna(row.get("explanation")) and row["explanation"].strip():
-            st.info(f"📘 解說：{row['explanation']}")
-
         if st.button("➡ 下一題"):
             st.session_state.q_index += 1
             st.session_state.answered = False
@@ -164,29 +153,7 @@ if st.session_state.q_index < total:
 else:
     st.balloons()
     st.subheader(f"🎉 測驗結束！你總共答對了 {st.session_state.score} / {total} 題")
-    # ✅ 儲存排行榜分數紀錄
-    leaderboard_path = "leaderboard.json"
-    entry = {
-        "user": st.session_state.user_id,
-        "score": st.session_state.score,
-        "total": total,
-        "accuracy": round(st.session_state.score / total * 100, 1),
-        "time_spent_sec": int(time.time() - st.session_state.start_time),
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    }
 
-    if os.path.exists(leaderboard_path):
-        with open(leaderboard_path, 'r', encoding='utf-8') as f:
-            leaderboard = json.load(f)
-    else:
-        leaderboard = []
-
-    leaderboard.append(entry)
-    with open(leaderboard_path, 'w', encoding='utf-8') as f:
-        json.dump(leaderboard, f, ensure_ascii=False, indent=2)
-
-
-    # 錯題紀錄
     if st.session_state.mode == 'full':
         wrong_indices = []
         for i, a in enumerate(st.session_state.answers):
@@ -195,17 +162,27 @@ else:
         with open(f"quiz_wrong_{st.session_state.user_id}.json", 'w', encoding='utf-8') as f:
             json.dump(wrong_indices, f, ensure_ascii=False)
 
-    # ✅ 加入已完成題目紀錄
-    done_path = f"quiz_done_{st.session_state.user_id}.json"
-    done_set = set()
-    if os.path.exists(done_path):
-        with open(done_path, 'r', encoding='utf-8') as f:
-            done_set = set(json.load(f))
-    done_set.update(st.session_state.shuffled_indices)
-    with open(done_path, 'w', encoding='utf-8') as f:
-        json.dump(sorted(done_set), f, ensure_ascii=False)
+        # ✅ 完成題庫才記入排行榜
+        if len(done_ids) == len(df):
+            leaderboard_path = "leaderboard.json"
+            record = {
+                "user": st.session_state.user_id,
+                "score": st.session_state.score,
+                "total": total,
+                "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            }
+            if os.path.exists(leaderboard_path):
+                with open(leaderboard_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            else:
+                data = []
+            data.append(record)
+            with open(leaderboard_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False)
+        else:
+            st.warning("⚠️ 尚未完成全部題庫（共 94 題），完成後才會記入排行榜！")
 
-    # 顯示紀錄與下載
+    # 顯示作答紀錄
     st.markdown(f"## 🧾 {st.session_state.user_id} 的答題紀錄")
     df_result = pd.DataFrame(st.session_state.answers)
     st.dataframe(df_result, use_container_width=True)
@@ -227,10 +204,4 @@ else:
         if st.button("🗑️ 清除錯題紀錄"):
             os.remove(f"quiz_wrong_{st.session_state.user_id}.json")
             st.success("✅ 錯題紀錄已刪除！")
-            st.rerun()
-
-    if os.path.exists(f"quiz_done_{st.session_state.user_id}.json"):
-        if st.button("🧼 重製已作答紀錄"):
-            os.remove(f"quiz_done_{st.session_state.user_id}.json")
-            st.success("✅ 已清除作答紀錄，下次會重新出題")
             st.rerun()
