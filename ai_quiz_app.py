@@ -92,16 +92,16 @@ if st.session_state.q_index < total:
     correct_answer_set = set(row['answer'].split(','))
 
     st.markdown(f"""
-**第 {st.session_state.q_index + 1} 題 / {total}**
+    **第 {st.session_state.q_index + 1} 題 / {total}**
 
-{row['question']}
-""")
+    {row['question']}
+    """)
 
-with st.sidebar:
-    st.markdown("📊 測驗進度")
-    progress = (st.session_state.q_index + 1) / total
-    st.progress(progress)
-    st.caption(f"📘 剩下 {total - st.session_state.q_index - 1} 題")
+    with st.sidebar:
+        st.markdown("📊 測驗進度")
+        progress = (st.session_state.q_index + 1) / total
+        st.progress(progress)
+        st.caption(f"📘 剩下 {total - st.session_state.q_index - 1} 題")
 
 
 
