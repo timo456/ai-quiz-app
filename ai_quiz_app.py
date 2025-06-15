@@ -91,23 +91,22 @@ if st.session_state.q_index < total:
     row = df.iloc[idx]
     correct_answer_set = set(row['answer'].split(','))
 
-    # 主畫面顯示題號與題目
     st.markdown(f"""
-    **第 {st.session_state.q_index + 1} 題 / {total}**
-    {row['question']}
-    """)
-    
-    # 顯示剩餘題數（主畫面提示）
-    st.info(f"📘 剩下 {total - st.session_state.q_index - 1} 題")
+**第 {st.session_state.q_index + 1} 題 / {total}**
 
-    # 側邊欄進度條
-    with st.sidebar:
-        st.markdown("📊 測驗進度")
-        st.progress((st.session_state.q_index + 1) / total)
+{row['question']}
+""")
 
-    # 顯示選項
-    options = [opt for opt in ['A', 'B', 'C', 'D', 'E', 'F'] 
-               if pd.notna(row.get(f'option_{opt}')) and row[f'option_{opt}']]
+with st.sidebar:
+    st.markdown("📊 測驗進度")
+    progress = (st.session_state.q_index + 1) / total
+    st.progress(progress)
+    st.caption(f"📘 剩下 {total - st.session_state.q_index - 1} 題")
+
+
+
+
+    options = [opt for opt in ['A', 'B', 'C', 'D', 'E', 'F'] if pd.notna(row.get(f'option_{opt}')) and row[f'option_{opt}']]
     multiselect_items = [f"{opt}. {row[f'option_{opt}']}" for opt in options]
     selected = st.multiselect("請選擇答案：", multiselect_items, key=f"q{idx}")
 
