@@ -6,7 +6,9 @@ import random
 import json
 import os
 
-# 題庫載入（檔案需包含 answer、option_A~F）
+MAX_QUESTIONS_PER_SESSION = 10  # ✅ 每輪最多幾題
+
+# 題庫載入（需包含 answer、option_A~F、explanation）
 df = pd.read_csv('ai_questions_fixed.csv', encoding='utf-8-sig')
 total_questions = len(df)
 
@@ -37,15 +39,23 @@ if not st.session_state.mode:
             st.rerun()
     st.stop()
 
-# 題目初始化
+# 題目初始化（支援錯題與題數上限，不重出做過題）
 if 'shuffled_indices' not in st.session_state:
+    done_path = f"quiz_done_{st.session_state.user_id}.json"
+    done_set = set()
+    if os.path.exists(done_path):
+        with open(done_path, 'r', encoding='utf-8') as f:
+            done_set = set(json.load(f))
+
     if st.session_state.mode == 'full':
-        st.session_state.shuffled_indices = random.sample(range(total_questions), total_questions)
+        all_indices = list(set(range(total_questions)) - done_set)
+        random.shuffle(all_indices)
     elif st.session_state.mode == 'review':
         with open(f"quiz_wrong_{st.session_state.user_id}.json", 'r', encoding='utf-8') as f:
-            st.session_state.shuffled_indices = json.load(f)
-        random.shuffle(st.session_state.shuffled_indices)
+            all_indices = json.load(f)
+        random.shuffle(all_indices)
 
+    st.session_state.shuffled_indices = all_indices[:MAX_QUESTIONS_PER_SESSION]
     st.session_state.q_index = 0
     st.session_state.score = 0
     st.session_state.answered = False
@@ -106,6 +116,10 @@ if st.session_state.q_index < total:
         else:
             st.error(f"❌ 答錯了，正確答案是：{latest['正確答案']}")
 
+        # ✅ 顯示解說
+        if pd.notna(row.get("explanation")) and row["explanation"].strip():
+            st.info(f"📘 解說：{row['explanation']}")
+
         if st.button("➡ 下一題"):
             st.session_state.q_index += 1
             st.session_state.answered = False
@@ -116,7 +130,7 @@ else:
     st.balloons()
     st.subheader(f"🎉 測驗結束！你總共答對了 {st.session_state.score} / {total} 題")
 
-    # 儲存錯題（僅完整測驗）
+    # 錯題紀錄
     if st.session_state.mode == 'full':
         wrong_indices = []
         for i, a in enumerate(st.session_state.answers):
@@ -124,6 +138,16 @@ else:
                 wrong_indices.append(st.session_state.shuffled_indices[i])
         with open(f"quiz_wrong_{st.session_state.user_id}.json", 'w', encoding='utf-8') as f:
             json.dump(wrong_indices, f, ensure_ascii=False)
+
+    # ✅ 加入已完成題目紀錄
+    done_path = f"quiz_done_{st.session_state.user_id}.json"
+    done_set = set()
+    if os.path.exists(done_path):
+        with open(done_path, 'r', encoding='utf-8') as f:
+            done_set = set(json.load(f))
+    done_set.update(st.session_state.shuffled_indices)
+    with open(done_path, 'w', encoding='utf-8') as f:
+        json.dump(sorted(done_set), f, ensure_ascii=False)
 
     # 顯示紀錄與下載
     st.markdown(f"## 🧾 {st.session_state.user_id} 的答題紀錄")
@@ -147,4 +171,10 @@ else:
         if st.button("🗑️ 清除錯題紀錄"):
             os.remove(f"quiz_wrong_{st.session_state.user_id}.json")
             st.success("✅ 錯題紀錄已刪除！")
+            st.rerun()
+
+    if os.path.exists(f"quiz_done_{st.session_state.user_id}.json"):
+        if st.button("🧼 重製已作答紀錄"):
+            os.remove(f"quiz_done_{st.session_state.user_id}.json")
+            st.success("✅ 已清除作答紀錄，下次會重新出題")
             st.rerun()
