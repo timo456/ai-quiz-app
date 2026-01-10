@@ -7,7 +7,7 @@ import json
 import os
 
 # 題庫載入
-df = pd.read_csv('ai_questions_fixed-2.csv', encoding='utf-8-sig')
+df = pd.read_csv('itsa_ai_questions.csv', encoding='utf-8-sig')
 total_questions = len(df)
 
 # 初始化狀態
