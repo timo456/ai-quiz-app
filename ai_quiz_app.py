@@ -8,7 +8,7 @@ import os
 import re
 
 # ====== 題庫載入（新版）======
-df = pd.read_csv('itsa_ai_questions2.0.csv', encoding='utf-8-sig')
+df = pd.read_csv('ai_questions_fixed_new.csv', encoding='utf-8-sig')
 total_questions = len(df)
 
 # ====== 工具：解析答案 ======
