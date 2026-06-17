@@ -1,0 +1,190 @@
+﻿id,question,option_A,option_B,option_C,option_D,option_E,option_F,answer,type,has_image
+1,在乙太網路的環境下，在兩個情況下電腦可以傳送資料。(Choose two.),when the medium is idle,when there is a carrier,when they detect no other devices are sending,when they receive a special token,when the server grants access,,"A,C",multiple,no
+2,當一個網路的port啟動CMSA/CD功能，請問該網路port為何種狀態。,This is a 10Mb/s switch port.,This is a 100Mb/s switch port.,This is an Ethemet port oprating at half duplex.,This is an Ethemet port oprating at full duplex.,This is a port on a network card in PC.,,C,single,no
+3,為何交換器永遠無法學習到廣播的位址?,Broadcast only use network layer addressing.,A broadcast frame is never forwarded by a switch,A broadcast address will nerver be the source address of a frame,Broadcast addresses use an incorrect format for the switching table.,Broadcast frames are never sent to switches.,,C,single,no
+4,網管人員執行ping 192.168.2.5來測試電腦之間網路連線狀況，請問在執行測試連線過程中，有使用甚麼網路協定。(Choose two.),CDP,ARP,DHCP,DNS,ICMP,,"A,E",multiple,no
+5,"參考下列架構，如果將HUB換成Switch後，針對碰撞區域與廣播區域的數目，下列哪些敘述是正確。
+[image]",The number of collision domains would remain the same,The number of collision domains would decrease,The number of collision domains would increase,The number of broadcast domains would remain the same,The number of broadcast domains would decrease,The number of broadcast domains would increase,"C,D",multiple,yes
+6,"下圖架構中SW1 與SW2都是預設設定，當電腦1送出廣播封包，針對傳送的狀況，下列哪些敘述是正確。
+[image]","Hosts 2,3, and 4 will receive the broadcast.","Hosts 1,2,3, and 4 will receive the broadcast.",Hosts 2 and the Fa0/0 interface of R1 will receive the broadcast.,"Hosts 1,2 and the Fa0/0 interface of R1 will receive the broadcast.","Hosts 1,2,3,4 and interface Fa0/0 of R1 will receive the broadcast.","Hosts 2,3,4 and interfaces Fa0/0 and Fa0/1 of R1 will receive the broadcast.",C,single,yes
+7,針對bridge與switch網路設備，下列那幾項是正確的描述? (Choose three. ),Switches are primarily software based while bridges are hardware based.,Both bridges and switches forward Layer 2 broadcasts.,Bridges are frequently faster than switches.,Switches have a higher number of ports than most bridges.,Bridges define broadcast domains while switches define collision domains.,Both bridges and switches make forwarding decisions based on Layer 2 addresses.,"B,D,F",multiple,no
+8,當網路設備的port偵測到碰撞時，請判斷是甚麼設備的port。,This is a 10Mb/s switch port,This is a 100Mb/s switch port,This is an Ethernet port operating at half duplex,This is an Ethernet port operating at full duplex,This is a port on a network interface card in a PC,,C,single,no
+9,使用Switch比使用Hub的優點有哪些。(Choose two.),decreasing the number of collision domains,filtering frames based on MAC addresses,allowing simultaneous frame transmissions,increasing the size of broadcast domains,increasing the maximum length of UTP cabling between devices,,"B,C",multiple,no
+10,使用實體位址的兩個目的是甚麼。(Choose two.),to uniquely identify devices at Layer 2,to allow communication with devices on a different network,to differentiate a Layer 2 frame from Layer 3 packet,to establish a priority system to determine which devices gets to transmit first,to allow communication between different devices on the same network,to allow detection of a remote devices when its physical address is unknown,"A,E",multiple,no
+11,下列那一個網路連線是要用直線網路線。,switch to switch,switch to hub,switch to router,hub to hub,router to PC,,C,single,no
+12,交換器或路由器的console埠與電腦的COM埠要連接時，需要用甚麼線材來連接。,crossover,straight-through,rollover,shielded twisted-pair Answer: C,,,C,single,no
+13,MAC位址的格式中，前面24 位元稱呼是甚麼?,NIC,BIA,OUI,VAI,,,C,single,no
+14,在乙太網路中，哪兩種情況是可以傳送資料。,when they receive a special token,when there is a carrier,when they detect no other devices are sending,when the medium is idle,when the server grants access,,"C,D",multiple,no
+15,"參考下列網路架構中，交換器的MAC表中已經記錄全部電腦的MAC，目前電腦A送出一個訊框資料(frame)，其表頭檔內容如下圖所示，請問可以得到什麼結論。
+[image]",The MAC address of host A is FFFF.FFFF.FFFF,The router will forward the packet in this frame to the Internet,The switch will only forward this frame to the attached router interface,All devices in this LAN except host A will pass the packet to Layer 3,,,D,single,yes
+16,"根據下列網路架構中，switch1剛重新開機，這時候由hostA傳送資料給hostC，請問switch1會如何增加MAC Table的資訊。
+[image]",Switch1 will add 000A.8A47.E612 to the switching table,Switch1 will add 192.168.23.4 to the switching table,Switch1 will add 192.168.23.12 to the switching table,Switch1 will add 0000B.DB95.2EEE9 to the switching table,,,A,single,yes
+17,下圖為RJ45網路線兩頭的接法，請問此網路線可以連接下列那一個。,PC to router,PC to switch,Server to router,Router to router,,,B,single,no
+18,下圖為RJ45網路線兩頭的接法，請問此網路線可以連接有哪些。,PC to router,PC to switch,Server to router,Router to router,,,"A,C,D",multiple,no
+19,L2交換器使用訊框中的什麼資訊來轉送收到的訊框。,source MAC address,source IP address,source switch port,destination IP address,destination port address,destination MAC address,F,single,no
+20,"Host 1要送資料給Host2，但在路由器C的e0介面壞掉了，請問下列那兩個陳述是為真。(Choose two.)
+[image]",Router C will use ICMP to inform Host 1 that Host 2 cannot be reached.,Router C will use ICMP to inform Router B that Host 2 cannot be reached.,"Router C will use ICMP to inform Host 1, Router A, and Router B that Host 2 cannot be reached.",Router C will send a Destination Unreachable message type.,Router C will send a Router Selection message type.,Router C will send a Source Quench message type.,"A,D",multiple,yes
+21,"當hostA送資料給Server，Server回應給hostA時，在回應資料封包中的來源MAC為何。
+[image]",The MAC address of router inferface e0,The MAC address of router interface e1,The MAC address of the server network inferface,The MAC address of host A,,,A,single,yes
+22,"HostA 執行ping router3的S0/0，請問ping封包到達Router3時候的TTL為何？
+[image]",252,253,254,255,,,B,single,yes
+23,"當管理者ping預設閘道10.10.10.1時，出現下列訊息，請問是OSI模型中的哪一層的問題？
+[image]",Data link layer,Application layer,Access layer,Session layer,Network layer,,E,single,yes
+24,"管理者在host1執行ping host2，結果出現下列訊息，請問發生甚麼問題？
+[image]",The link between Host 1 and Switch 1 is down..,TCP/IP is not functioning on Host 1.,The link between Router1 and Router2 is down.,The default gateway on Host1 is incorrect.,Interface Fa0/0 on Router1 is shutdown.,The link between Switch1 and Router1 is down.,C,single,yes
+25,在同一個交換器的網路中，下列那一個指令可以測試PC之間的連線狀態？,Pingaddress,Tracertaddress,Tracerouteaddress,arpaddress,,,A,single,no
+26,OSI中那一層有流量管控功能及可靠傳送的機制。,data link,network,presentation,transport,physical,,D,single,no
+27,網路管理員執行traceroute 指令後，出現 “Destination Unreadable” 的訊息，請問這是甚麼協定產生的訊息?,RARP,RUDP,ICMP,SNMP,,,C,single,no
+28,網路管理員要檢查一台電腦的IP設定是否有成功，請問要ping下列哪一個IP位址。,10.1.1.1,127.0.0.1,192.186.0.1,239.1.1.1,,,C,single,no
+29,"參考下列網路架構中，當HostA ping HostB之後，在HostA中的ARP cache 內容為何?
+[image]","Interface Address	Physical Address 	Type
+192.168.4.7	000f.2480.8916	dynamic","Interface Address	Physical Adress 	Type
+192.168.4.7	0010.5a0c.feae	dynamic","Interface Address	Physical Address 	Type
+192.168.6.1	0010.5a0c.feae	dynamic","Interface Address	Physical Address 	Type
+192.168.6.1	000f.2480.8916	dynamic","Interface Address	Physical Address 	Type
+192.168.6.2	0010.5a0c.feae	dynamic",,D,single,yes
+30,"參考下列網路架構及部份輸出訊息，HostA正在傳送資料給HostB，當路由器收到該筆資料時，路由器會如何處理?(choose three)
+[image]",Router1 will strip off the source Mac address and replace it with the MAC address on the forwarding FastEthernet interface,Router1 will strip off the sourece IP address and replace it with the IP address on the forwarding FastEthernet interface,Router1 will strip off the destination MAC address and replace it with the MAC address of Host B,Router 1 will strip off the destination IP address and replace it with the IP address of Host B,Router1 will forward the data frame out interface FastEthernet0/1,Router1 will forward the data frame out interface FastEthernet0/2,"A,C,F",multiple,yes
+31,參考R1的show ip arp輸出訊息，當路由器R1收到下列的封包時，R1會作如何處理。(choose three.),R1 will strip off the source MAC address and replace it with the MAC address 0000.0c36.ae45,R1 will strip off the source IP address and replace it with the IP address 192.168.40.1,R1 will strip off the destination Mac address and replace it with the MAC address 0000.0c07.4320,R1 will strip off the destination IP address and replace it with the IP address of 192.168.40.1,R1 will forward the data packet out interface FastEthernet0/1,R1 will forward the data packet out interface FastEthernet0/2,"A,C,F",multiple,no
+32,"參考下列網路架構中，當資料由HostA送到HostC時，資料中的目的位址為何? (Choose two.)
+[image]",the IP address of Switch 1,the MAC address of Switch 1,the IP address of Host C,the MAC address of Host C,the IP address of the router’s E0 interface,the MAC address of the router’s E0 interface,"C,F",multiple,yes
+33,"參考下列網路架構中，當host 4 要送資料給host3時，資料中的目的位址為何? (Choose two.)
+[image]",the IP address of host 3,the IP address of host 4,the MAC address of host 3,the MAC addresses of host 4,the MAC address of the Fa0/0 interface of the R1 router,the MAC address of the Fa0/1 interface of the R1 router,"A,C",multiple,yes
+34,"參考下列網路架構中，當hostA要送資料給hostB時，資料還在HostA的網路中時，資料中的目的MAC與來源MAC為何？(Choose two.)
+[image]",the MAC address of Router1,the MAC address of Switch2,the Mac address of Router1 Fa0/1,the MAC address of Switch1,the Mac address of Router1 Fa0/0,the MAC address of HostA,"E,F",multiple,yes
+35,"參考下列網路架構，當Host A pings Host B後， ping的封包離開R2的fa0/1時，請問封包中來源位址為何? (Choose two.)
+[image]",abcd.abcd.a001,abcd.abcd.a002,abcd.abcd.b003,10.2.0.15,10.0.64.1,10.0.128.15,"B,D",multiple,yes
+36,根據下圖路由器的輸出資訊，請問可以決定下列那一件事?,192.168.1.2 is local to the router,192.168.3.1 is local to the router,192.168.1.2 will age out in less than 1 minute,192.168.3.1 has aged out and is marked for deletion,,,B,single,no
+37,根據下圖MAC Table資訊，交換器S1如何傳送目的MAC為00b0.d056.efa4的資料。,Switch-1 will drop the data because it does not have an entry for that MAC address,Switch-1 will send an ARP request out all its ports except the port from which the data originated,Switch-1 will flood the data out all of its ports except the port from which the data originated,Switch-1 will forward the data to its default gateway,,,C,single,no
+38,"根據下列網路架構與輸出資訊，Host1執行ping 192.168.1.254，此IP為Host1的預設閘道，從Host1的arp cache的內容，Host1做了什麼。
+[image]",send a unicast ARP packet to the DSL modem/router,send Layer 3 broadcast packets to which the DSL modem/router responds,send unicast ICMP packets to the DSL modem/router,"send a Layer 2 broadcast that is received by Host2, the switch, and the DSL modem/router",,,C,single,yes
+39,當網管人員在一台電腦中執行ping 127.0.0.1並且成功收到ping回覆封包，請問可以確定下列那一件事?,The PC has connectivity with a local host,The PC has connectivity with a Layer 3 device,The Pc has a default gateway correctly configured,The Pc has connectivity up to Layer 5 of the OSI model,The PC has the TCP/IP protocol stack correctly installed,,E,single,no
+40,管理者正在規劃3個網頁伺服器在同一個子網路中，請問用最合適的規劃為何？,192.168.252.0 255.255.255.252,192.168.252.8 255.255.255.248,192.168.252.8 255.255.255.252,192.168.252.16 255.255.255.240,192.168.252.16 255.255.255.252,,B,single,no
+41,使用階層式方式規劃IP位址時，請問會有下列兩個優點。,Reduces routing table entries,Auto-negotiation of media rates,Efficient utilization of MAC addresses,Dedicated communications between devices,Ease of management and troubleshooting,,"A,E",multiple,no
+42,給定一個IP位址 172.16.28.252 255.255.240.0，下列哪一個是正確的網路IP位址。,172.16.16.0,172.16.0.0,172.16.24.0,172.16.28.0,,,A,single,no
+43,"根據下列網路架構，針對60台主機部分，請問最合適的子網路規劃為何？
+[image]",192.168.1.56/26,192.168.1.56/27,192.168.1.64/26,192.168.1.64/27,,,C,single,yes
+44,下列那一個子網路規劃最適合給8個子網路，每個子網路有5 到26主機。,0.0.0.240,255.255.255.252,255.255.255.0,255.255.255.224,255.255.255.240,,D,single,no
+45,管理者要設定113個點對點的連線，請問下列哪一個IP位址規劃最適合這個需求。,10.10.0.0/16 subnetted with mask 255.255.255.252,10.10.0.0/18 subnetted with mask 255.255.255.252,10.10.0.0/24 subnetted with mask 255.255.255.252,10.10.0.0/23 subnetted with mask 255.255.255.252,10.10.0.0/25 subnetted with mask 255.255.255.252,,D,single,no
+46,"下圖架構中關於Network Device A的設備，那些敘述為真? (Choose three.)
+[image]","With a network subnet mask of 255.255.255.128, each interface does not require an IP address.","With a network subnet mask of 255.255.255.128, each interface does require an IP address on a unique IP subnet.","With a network subnet mask of 255.255.255 0, must be a Layer 2 device for the PCs to communicate with each other.","With a network subnet mask of 255.255.255 0, must be a Layer 3 device for the PCs to communicate with each other.","With a network subnet mask of 255.255.254 0, each interface does not require an IP address.",,"B,D,E",multiple,yes
+47,下列那些IP位址可以分配給主機使用。,205.7.8.32/27,191.168.10.2/23,127.0.0.1,224.0.0.10,203.123.45.47/28,10.10.0.0/13,"B,F",multiple,no
+48,當子網路規劃為/27，路由器使用了ip subnet zero 指令，請問下列那幾個IP可以作為主機IP?(Choose three.),10.15.32.17,17.15.66.128,66.55.128.1,135.1.64.34,129.33.192.192,192.168.5.63,"A,C,D",multiple,no
+49,下列那幾個主機IP是可以連上網際網路?(Choose three.),10.172.13.65,172.16.223.125,172.64.12.29,192.168.23.252,198.234.12.95,212.193.48.254,"C,E,F",multiple,no
+50,給定一個網路198.168.20.19/28，下列那幾個主機IP是在這個網路中的主機IP位址?(Choose two),192.168.20.29,192.168.20.16,192.168.20.17,192.168.20.31,192.168.20.0,,"A,C",multiple,no
+51,下列那些是描述私有IP的特性?(Choose two.),addresses chosen by a company to communicate with the Internet,addresses that cannot be routed through the public Internet,addresses that can be routed through the public Internet,a scheme to conserve public addresses,addresses licensed to enterprises or ISPs by an Internet registry organization,,"B,D",multiple,no
+52,網管人員正在規劃公司的網路，公司需求最少要有300子網路，每個子網路最少要有50台主機需求，目前公司只有一個Class B可以使用，請問下列那些子網路規劃，可以符合公司網路需求。(Choose two.),255.255.255.0,255.255.255.128,255.255.252.0,255.255.255.224,255.255.255.192,255.255.248.0,"B,E",multiple,no
+53,當ip subnet zero的指令沒有設定在路由器上，一個class B子網路規劃為192.168.8.0/29，下列哪一個主機IP為第六個子網路的第一個主機IP。,192.168.8.25,192.168.8.41,192.168.8.49,192.168.8.113,,,C,single,no
+54,下列那一個IP位址可以設定在面對網際網路的介面上?,10.18048.224,9.255.255.10,192.168.20.223,172.16.200.18,,,B,single,no
+55,"當下圖中的s0/0介面上被設定為私有IP位址，請問下列敘述何者正確?
+[image]",Addresses in a private range will be not routed on the Internet backbone.,Only the ISP router will have the capability to access the public network.,The NAT process will be used to translate this address in a valid IP address.,Several automated will be necessary on the private network.,"A conflict of IP addresses happens, because other public routers can use the same range.",,A,single,yes
+56,"請參考下列網路需求，下列那一個子網路規劃最適合Network A的主機數目。
+[image]",/28,/27,/26,/25,,,D,single,yes
+57,"請參考下列網路需求，下列那一個子網路規劃最適合NetworkB的主機數目。
+[image]",255.255.255.0,255.255.254.0,255.255.252.0,255.255.258.0,,,B,single,yes
+58,"請參考下列網路需求，對於WAN的接線部份，需要規劃下列那一個網路最為適合。
+[image]",/23,/24,/25,/30,,,D,single,yes
+59,在131.1.123.0/27網路中，最後一個可用的主機IP位址為何。,131.1.123.30,131.1.123.31,131.1.123.32,131.1.123.33,,,A,single,no
+60,在192.0.2.0/23中，下列哪些IP位址是可以設定在主機上。,192.0.2.0,192.0.2.255,192.0.3.255,192.0.4.0,,,B,single,no
+61,124.12.4.0/22網路可以有多少個主機位址。,510,1022,1024,2048,,,B,single,no
+62,一台主機使用DHCP取得到的預設閘道為192.168.5.33/28，下列哪一個IP可以給該主機使用。,192.168.5.55,192.168.5.47,192.168.5.40,192.168.5.32,192.168.5.14,,C,single,no
+63,給定subnet mask為 255.255.254.0，下列那些IP是主機IP位址?,113.10.4.0,189.54.3.0,175.33.3.255,26.358.52.255,17.35.36.0,,"B,D",multiple,no
+64,"Workstation A被設定IP為172.0.2.24/28，Workstation B 被設定IP為172.0.2.100/28. 兩台workstations使用直線網路線對接，完成後兩台對ping都不能通，請問是什麼原因?(Choose two.)
+[image]",Replace the straight-though cable with a crossover cable.,Change the subnet mask of the hosts to /25,Change the subnet mask of the hosts to /26,Change the address of Workstation A to 172.0.2.15,Change the address of Workstation B to 172.0.2.111,,"A,B",multiple,yes
+65,ISP分配給公司的IP為223.5.14.6/29用來設定電腦，並且也定了預設閘道為223.5.14.7，當公司的網路管理員都設定完成後，卻無法連上ISP，請問是什麼問題。,The default gateway is not an address on this subnet.,The default gateway is the broadcast address for this subnet.,The IP address is the broadcast address for this subnet.,The IP address is an invalid class D multicast address.,,,B,single,no
+66,"27. 下圖IP組態中，預設閘道應該是下列那一個IP位址。
+[image]",10.0.0.0,10.0.0.254,192.223.129.0,192.223.129.254,,,B,single,yes
+67,28. 網管人員在路由器上有設定ip subnet-zero，並將172.25.0.0網路被分成8子網路，下列那些IP位址是屬於第3個子網路的主機IP。(Choose three.),172.25.78.243,172.25.98.16,172.25.72.0,172.25.94.255,172.25.96.17,172.25.100.15,"A,C,D",multiple,no
+68,29. 當172.16.0.0/23網路被切割子網路為/27，請問產生幾個子網路及每個子網路中的主機數目。,"8 subnets, 32 host","8 subnets, 31 hosts","16 subnets, 30 host","16 subnets, 32 host",,,C,single,no
+69,"30. 請參考下列網路架構規劃，工作站B與伺服器A無法互通，是下列那一個原因。
+[image]",The IP address for Server A is a broadcast address. ,The IP address for Workstation B is a subnet address.,The gateway for Server A is not on the same subnet. ,The gateway for Workstation B is not on the same subnet.,,,C,single,yes
+70,"31. 請參考下列網路規劃，下列哪兩個網路位址可以用在Network A 及 Link A。
+[image]",Network A - 172.16.3.128/25,Network A - 172.16.3.48/26,Network A - 172.16.3.192/26,Link A - 172.16.3.40/30,Link A - 172.16.3.0/30,Link A - 172.16.3.112/30,"A,E",multiple,yes
+71,32. 將192.216.32.32/29子網路中最後一個主機IP設定在路由器上的介面，請問是下列哪一個指令可以完成。,router (config-if)#ip address 192.216.32.38 255.255.255.240,router (config-if)#ip address 192.216.32..39 255.255.255.224,router (config-if)#ip address 192.216.32.63 255.255.255.248,router (config-if)#ip address 192.216.32.39 255.255.255.248,router (config-if)#ip address 192.216.32.63 255.255.255.248,router (config-if)#ip address 192.216.32.38 255.255.255.248,F,single,no
+72,"33. 下列兩個路由器R1與R2使用序列埠連線，但是連線不成功，網管人員使用show interface查詢結果如下，如果R1確認沒有設定錯誤，請問R2中設定錯誤的地方。
+[image]",A clock rate is not set,The serial line encapsulations are incompatible,The subnet mask is incorrect,The IP address is incorrect,The maximum transmission unit(MTU) size is too large,The bandwidth setting is incompatible with the connected interface,D,single,yes
+73,"34. Host1無法收到Host2的封包，假設R1與R2的路由功能沒問題，請問是IP組態錯在哪些地方。(choose two)
+[image]",The fa0/1 interface of router R2 has been assigned a broadcast address,The fa0/1 network on router R2 overlaps with the LAN attached to R1,Host 2 has been assigned the incorrect subnet mask,Host 1 has been configured with the 255.255.248.0 subnet mask,Host 2 on router R2 is on a different subnet than its gateway,,"B,C",multiple,yes
+74,當一台交換器已經設定新的Trunk連線，那些Vlan的資料可以經過新的Trunk?,"By default, all defined VLANs are allowed on the trunk","Each single VLAN, or VLAN range, must be specified with the switchport mode command","Each single VLAN, or VLAN range, must be specified with the vtp domain command","Each single VLAN, or VLAN range, must be specified with the vlan database command",,,A,single,no
+75,有兩台交換器S1與S2使用fa0/13對接，並設定為Trunk連線，在S1設定Native Vlan為Vlan10，而S2使用預設的Native Vlan，針對這樣的Native Vlan的設定，會有什麼問題產生。,802.1Q giants frames could saturate the link,VLAN 10 on CAT1 and VLAN 1 on CAT2 will send untagged frames,A native VLAN mismatch error message will appear,VLAN 10 on CAT1 and VLAN 1 on CAT2 will send tagged frames,,,C,single,no
+76,假設目前交換器是預設組態，請問下列哪一個範圍可以增加、修改及刪除Vlan ID。,1 through 1001,2 through 1001,1 through 1002,2 through 1005,,,B,single,no
+77,請問下列指令執行結果代表什麼意義。,It creates a VLAN 999 interface.,It designates VLAN 999 for untagged traffic.,It blocks VLAN 999 traffic from passing on the trunk.,It designates VLAN 999 as the default for all unkown tagged traffic.,,,B,single,no
+78,目前一台路由器有兩個乙太網路介面，需要連接四個Vlan，要如何用最好的路由器的網路介面來完成這項工作。,Use a hub to connect the four VLANS with a Fast Ethemet interface on the router.,Add a second router to handle the VLAN traffic.,Add two more Fast Ethermet interfaces.,Implement a router-on-a-stick configuration.,,,D,single,no
+79,"[image]
+根據上圖架構及資訊，當S1中的Vlan1送出去的資料，在S2卻是Vlan2收到，這是什麼原因造成。",Trunk mode mismatches,Allowing only VLAN 2 on the destination,Native VLAN mismatches,VLANs that do not correspond to a unique IP subnet,,,C,single,yes
+80,當交換器還未建立Vlan3時，卻執行下列指令，請問會發生什麼事情。,The command is rejected,The port turns amber.,The command is accepted and the respective VLAN is added to vlan dat.,The command is accepted and you must configure the VLAN manually.,,,C,single,no
+81,網路管理員想從外面的網路透過Telnet連線到交換器，請問必須設定下列那些選項。(Choose two.),"The switch must be configured with an IP address, subnet mask, and default gateway",The switch must be connected to a router over a VLAN trunk,The switch must be reachable through a port connected to its management VLAN,The switch console port must be connected to the Ethernet LAN,The switch management VLAN must be created and have a membership of at least one switch port,The switch must be fully configured as an SNMP agent,"A,C",multiple,no
+82,當有一台Catalyst 2950 交換器要被重新設定，需要下列那些步驟才能將這台交換器的舊組態全部清除。(Choose three.),Erase flash,Restart the switch,Delete the VLAN database,Erase the running configuration,Erase the startup configuration,Modify the configuration register,"B,C,E",multiple,no
+83,下列那些是VLANs的優點?(Choose three.),VLANs establish broadcast domains in switched networks,VLANs utilize packet filtering to enhance network security,VLANs provide a method of conserving IP addresses in large networks,VLANs provide a low-latency internetworking alternative to routed networks,"VLANs allow access to network services based on department, not physical location","VLANs can greatly simplify adding, moving, or changing hosts on the network","A,E,F",multiple,no
+84,"參考下圖接線架構中，在交換機的兩個連接埠沒有變成橘燈或綠燈，下列那些是有效的步驟來檢查實體層問題。(Choose three.)
+[image]",Ensure that the Ethernet encapsulations match on the interconnected router and switch ports,Ensure that cables A and B are straight-through cables,Ensure cable A is plugged into a trunk port,Ensure the switch has power,Reboot all of the devices,Reseat all cables,"B,D,F",multiple,yes
+85,"參考下列網路架構中，關於路由器與交換器的連接埠，下列哪些敘述是正確。(Choose three.)
+[image]",The Router1 WAN port is configured as a trunking port,The Router 1 port connected to Switch1 is configured using subinterfaces,The Router 1 port connected to Switch1 is configured as 10 Mbps,The Switch1 port connected to Router1 is configured as a trunking port,The Switch1 port connected to Host B is configured as an access port,The Switch1 port connected to Hub1 is configured as full duplex,"B,D,E",multiple,yes
+86,"參考下列網路架構中，只有電腦A、D、G可以存取server的資料，其它電腦不行，請問可以使用什麼技術來達成。(Choose two.)
+[image]",access lists,encrypted router passwords,STP,VLANs,VTP,Wireless LANs,"A,D",multiple,yes
+87,關於802.1Q trunking，下列哪些敘述是正確 (Choose three.),802.1Q native VLAN frames are untagged by default,802.1Q trunking ports can also be secure ports,802.1Q trunks can use 10 Mb/s Ethernet interfaces,"802.1Q trunks require full-duplex, point-to-point connectivity",802.1Q trunks should have native VLANs that are the same at both ends,,"A,C,E",multiple,no
+88,"參考下列網路架構中，網管人員在交換器與路由器設定，要將VLAN3與VLAN4中的電腦能夠存取Server，下列那些乙太網路的區段必須設定為Trunk。(Choose two.)
+[image]",A,B,C,D,E,F,"C,F",multiple,yes
+89,"參考下列網路架構中，網路管理員知道Vlan4中Server必須提供給所有其它Vlan中的電腦存取，網路管理員必須設定那接連接埠為access模式?(Choose three.)
+[image]",S1 – Fa0/2,S1 – Fa0/9,S2 – Fa0/3,S2 – Fa0/4,S2 – Fa0/8,R1– Fa1/0,"A,C,D",multiple,yes
+90,"參考下列網路架構中，網管人員觀察到一個問題的現象如下，
+All of the user hosts can access the Internet
+None of the user hosts can access the server located in VLAN9
+All of the hosts can ping each other
+請問造成什麼問題?
+[image]",S2 is turned off,Interface S0/0 on R1 is down,Interface Fa1/0 on R1 is down,Interface Fa0/5 on S3 is down,Interface Fa0/4 on S3 is down,Trunking is not enabled on the link between S1 and S3,E,single,yes
+91,那兩種連線的協定是用來攜帶多個Vlan的資料。,VTP,802.1q,IGP,ISL,802.3u,,"B,D",multiple,no
+92,公司內有一台交換器的所有的連接埠都設定為full duplex並指定到Vlan2，如果將交換器建立新的Vlan並將連接埠指定到新的Vlan，下列那一個敘述為正確。,More collision domains will be created,IP address utilization will be more efficient,More bandwidth will be required than was needed previously,An additional broadcast domain will be created,,,D,single,no
+93,針對Vlan來規劃網路，下列哪些敘述是正確。,VLANs increase the size of collision domain,VLANs allow logical grouping of users by function,VLANs simplify switch administration,VLANs enhance network security,,,"B,D",multiple,no
+94,在一家公司的網路中，主機在相同Vlan可以互相傳送資料，但是主機在不同Vlan中卻無法傳送資料，需要什麼設定才能解決此問題。,a router with subinterfaces configured on the physical interface that is connected to the switch,a router with an IP address on the physical interface connected to the switch,a switch with an access link that is configured between the switches,a switch with a trunk link that is configured between the switches,,,A,single,no
+95,下列為交換器S1的show int fa0/24 switchport的輸出訊息，在S1的fa0/24要設定為IEEE 802.1Q-compliant trunk與其它交換器做連線，但是Trunk連線一直無法成功，網路線確認是正常，根據下列輸出訊息，請問是那部份設定錯誤。,VLANs have not been created yet,An IP address must be configured for the port,The port is currently configured for access mode,The correct encapsulation type has not been configured,The no shutdown command has not been entered for the port,,C,single,no
+96,"參考下列網路架構中，兩台交換器中的Vlan10之間無法互通，另外Vlan15之間也無法互通，只有Admin Vlan之間可以互相傳送資料，兩台交換器的連接埠的Vlan分配都是一樣，根據下列show vlan brief的輸出訊息中，請問有什麼問題嗎。
+[image]",The fa0/1 port is not operational on one of the switches,The link connecting the switches has not been configured as a trunk,At least one port needs to be configured in VLAN 1 for VLANs 10 and 15 to be able to communicate,Port FastEthernet 0/1 needs to be configured as an access link on both switches,A router is required for hosts on SW11 in VLANs 10 and 15 to communicate with hosts in the same VLAN on Sw12,,B,single,yes
+97,"參考下列網路架構中，網路管理員需要增加一個新Vlan3，但是在路由器上已經沒有多餘的網路介面可以給Vlan3使用，請問使用哪種技術可以解決此問題。
+[image]",Purchase a new FastEthernet module and install it on R1,ReplaceR1 with a new router that has at least three FastEthernet interface,Configure a second switch to support VLAN3 with a VALN trunk between SW1 and the new switch,Configure a single VLAN trunk between R1 and configure a subinterface on the R1 interface for each VLAN,Connect another router to a serial interface of R1. Use a FastEthernet interface on the new router for VLAN3,,D,single,yes
+98,"參考下列網路架構中，有關於Vlan之間的繞送，下列哪些敘述是正確?(choose two.)
+[image]",Host E and host F use the same IP gateway address,Router1 and Switch2 should be connected via a crossover cable,Router1 will not play a role in communications between host A and host D,The FastEthernt 0/0 interface on Router1 must be configured with subinterfaces,Router1 needs more LAN interfaces to accommodate the VLANs that are shown in the exhibit,The FastEthernet 0/0 interface on Router1 and Switch2 trunk ports must be configured using the same encapsulation type,"D,F",multiple,yes
+99,"參考下圖網路架構中，網路管理員要在交換器S1上增加主機A與B，針對這兩台的相關IP位址設定，下列何者正確?(Choose three)
+[image]",host A ip address: 192.168.1.79,host A IP address: 192.168.1.64,host A default gateway: 192.168.1.78,host B IP address: 192.168.1.128,host B default gateway: 192.168.1.129,host B IP address: 192.168.1.190,"A,C,F",multiple,yes
+100,"根據下圖網路架構與部分訊息，目前該網路有不通的情況，請問是下列哪些問題?(Choose two.)
+[image]",Configure the gateway on Host A as 10.1.1.1,Configure the gateway on Host B as 10.1.2.254,Configure the IP address of Host A as 10.1.2.2,Configure the IP address of Host B as 10.1.2.2,Configure the masks on both hosts to be 255.255.255.224,Configure the masks on both hosts to be 255.255.255.240,"B,D",multiple,yes
+101,"參考下列網路架構，路由器R1已經設定提供Vlan之間的路由功能，針對交換器的fa0/1連線到路由器，必須使用下列那些IOS指令來設定IEEE標準的協定?(Choose three.)
+[image]",Switch(config)#interface fastethernet 0/1,Switch(config-if)#switchport mode access,Switch(config-if)#switchport mode trunk,Switch(config-if)#switchport access vlan 1,Switch(config-if)#switchport trunk encapsulation isl,Switch(config-if)#switchport trunk encapsulation dot1q,"A,C,F",multiple,yes
+102,"根據下圖網路架構與主機數目需求，所有主機都必須互相聯通，關於IP位址下列那些是正確?(choose three.)
+[image]",The subnet mask in Vlan 1 is 255.255.255.192,The subnet mask in Vlan2 is 255.255.255.128,The IP address 172.16.1.25 can be assigned to hosts in VLAN1,The IP address 172.16.1.205 can be assigned to hosts in VLAN1,The LAN interface of the router is configured with one IP address,The LAN interface of the router is configured with multiple IP addresses,"B,C,F",multiple,yes
+103,"根據下列網路架構與部分訊息，如果要讓所有電腦裝置都能互通，在交換器的fa0/1需要什麼設定?
+[image]",The ports only need to be connected by a crossover cable,SwitchX(config)#interface fastethernet0/1 SwitchX(config-if)#switchport mode trunk,SwitchX(config)#interface fastethernet 0/1 SwitchX(config-if)#switchport mode access SwitchX(config-if)#switchport access vlan 1,SwitchX(config)#interface fastethernet 0/1 SwitchX(config-if)#switchport mode trunk SwitchX(config-if)#switchport trunk vlan 1 SwitchX(config-if)#switchport trunk vlan 10 SwitchX(config-if)#switchport trunk vlan 20,,,B,single,yes
+104,"[image]
+根據上圖的四個ACL敘述啟動在E0介面的IN方向，請問要什麼樣的順序才能讓172.21.1.128/28網路中的第一個與最後一個主機IP的流量通過，其它172.21.1.128/28全部阻擋。",ACDB,BADC,DBAC,CDBA,,,D,single,yes
+105,下列哪一個選項針對ACL啟動在網路介面的描述是正確。,You can place as many access lists as you want on any interface.,You can apply only one access list on any interface.,"You can configure one access list, per direction, per Layer 3 protocol.",You can apply multiple access lists with the same protocol or in different directions.,,,C,single,no
+106,下列哪一個選項是標準ACL判斷的根據。,Destination address and wildcard mask,Destination address and subnet mask,Source address and subnet mask,Source address and wildcard mask,,,D,single,no
+107,如何保護路由器的virtual terminal interface。(Choose two.),Administratively shut down the interface.,Physically secure the interface.,Create an access list and apply it to the virtual terminal interfaces with the access-group command.,Configure a vitual terminal password and login process.,Enter an access list anf apply it to the virtual terminal interfaces using the access-class command.,,"D,E",multiple,no
+108,"[image]
+根據上圖資訊，如何將ACL102從網路介面移除。",No ip access-class 102 in,No ip access-class 102 out,No ip access-group 102 in,No ip access-group 102 out,No ip access list 102 in,,D,single,yes
+109,網路管理者要設計ACL只允許192.168.146.0、192.168.147.0、192.168.148.0及192.168.149.0四個網路的流量通過，下列哪兩個ACL的組合可以達到此需求。,Access-list 10 premit ip 192.168.146.0. 0.0.1.255,Access-list 10 premit ip 192.168.147.0 0.0.255.255,Access-list 10 premit ip 192.168.148.0 0.0.1.255,Access-list 10 premit ip 192.168.149.0 0.0.255.255,Access-list 10 permit ip 192.168.146.0 0.0.0.255,Access-list 10 premit ip 192.168.146.0 255.255.255.0,"A,C",multiple,no
+110,下列哪一個選項是標準的ACL語法。,Access-list 110 premit ip any any,Access-list 50 deny 192.168.1.1 0.0.0.255,Access list 101 deny tcp any host 192.168.1.1,Access-list 2500 deny tcp any host 192.168.1.1 eq 22,,,B,single,no
+111,下列那一個指定可以顯示ACL設定於介面上?,show ip interface[interface] access-lists,show ip access-lists interface[interface],show ip interface[interface],show ip access-lists[interface],,,C,single,no
+112,用什麼方式可以達到安全的virtual terminal interfaces連線到路由器?(Choose two.),Administrabvely shut down the interface,Physical secure the interface,Create an access list and apply to the terminal interface with the access-group command,configure a virtual terminal password,Enter an access list and apply it to the virtual terminal interlaces using the access-class command,,"D,E",multiple,no
+113,"一個inbound的ACL已經被設定於序列不中來拒絕封包屬於TCP and UDP ports 21,23 and 25，請問下列那些封包可以通過該ACL (Choose three.)",FTP,Telnet,SMTP,DNS,HTTP,POP3,"D,E,F",multiple,no
+114,根據下列show access-list輸出資訊，當有一個來自網際網路的HTTP封包要送往目的172.16.12.10時，該ACL會如何處理?,Traffic will be dropped per line 30 of the ACL,Traffic will be accepted per line 40 of the ACL,"Traffic will be dropped, because of the implicit deny all at the end of the ACL","Traffic will be accepted, because the source address is not covered by the ACL",,,C,single,no
+115,當路由器設定inbound ACL，甚麼時候inbound ACL會處理收到的封包?,Before they are routed to an outbound interface,After they are routed to an outbound interface,Before and after they are routed to an outbound interface,After they are routed to an outbound interface but before being placed in the outbound queue,,,A,single,no
+116,"網路管理員在路由器RA中設定如下時，主要是甚麼目的?
+[image]",To give students access to the Internet,To prevent students from accessing the command prompt RA,To prevent administrators from accessing the console of RA,To give administrators access to the Internet,To prevent students from accessing the Internet,To prevent students from accessing the Admin network,B,single,yes
+117,在172.16.5.118/26網路中的所有電腦不能使用telnet連到LAN外面，下列哪一個ACL指令可以達到此需求。,access-list 128 deny tcp 172.16.5.64 0.0.0.63 any eq 23,access-list 128 deny tcp 172.16.5.128 0.0.0.63 any eq 22,access-list 10 deny tcp 172.16.5.64 0.0.0.63 any eq 23,access-list 128 deny tcp host 171.16.5.118 any eq 23,,,A,single,no
+118,當網路管理員已經設計一個ACL標號為100，請問要用那一個指令讓該ACL在介面上執行?,apply access-list 101 out,ip access-group 101 out,access-class 101 out,permit access-list 101 out,,,B,single,no
+119,下列哪一個指令可以設定時間戳記到debug訊息，時間戳記為milliseconds。,Service timestamps log detetime localtime,Service timestamps debug datetime msec,Service timestamps debug datetime localtime,Service timestamps log datetime msec,,,B,single,no
+120,使用Netflow的優點有哪三個選項。,"Network, Application & User Monitoring",Network Planning,Security Analysis,Accounting/Billing,,,"A,C,D",multiple,no
+121,當管理者輸入logging trap 3 時，下列哪三種等級的IOS訊息會被記錄到Syslog server。,Informational,Emergency,Warning,Critical,Debug,Error,"B,D,F",multiple,no
+122,在安裝Netflow軟體之前，有哪三個因素要考慮。,CPU utilization,Where Netflow data will be sent,Number of devices exporting Netflow data,Port availability,SNMP version,WAN encapsulation,"A,B,C",multiple,no
+123,下列哪三個選項是描述SNMPv2與SNMPv3是正確。,SNMPv3 enhanced SNMPv2 security features.,SNMPv3 added the Inform protocol message to SNMP.,SNMPv2 added the Inform protocol message to SNMP.,SNMPv3 added the GetBulk protocol messages to SNMP.,SNMPv2 added the GetBulk protocol messages to SNMP.,SNMPv2 added the GetNext protocol messages to SNMP.,"A,C,E",multiple,no
+124,下列哪三個選項描述Syslog是正確。,Utilizing Syslog Improves network performance.,The Syslog server automatically notifies the network administrator of network problems.,A syslog server provides the storage space necessary to store log files without using router disk space.,There are more Syslog messages available within Cisco IOS than there are comparable SNMP trap messages.,Enabling Syslog on a router automatically enables NTP accurate time stamping.,A syslog server helps in aggregation of logs and alerts.,"C,D,F",multiple,no
+125,Syslog訊息主要儲存在下列哪三個地方。,Buffer,Console terminal,Flash,Syslog server,,,"A,B,D",multiple,no
+126,請列出三個SNMP的元件,MIB,NMS (Manager),Agent,SET,,,"A,B,C",multiple,no
+127,下列哪三個功能是加入到SNMPv3。,Message Integrity,Authentication,Compression,Encryption,,,"A,B,D",multiple,no
+128,下列哪三個值會被Netflow認定為同一個flow。,IP address,Interface name,Port numbers,L3 protocol type,,,"A,C,D",multiple,no
+129,下列哪三個值會被Netflow認定為同一個flow。,Source IP address,Source MAC address,Egress interface,Ingress interface,Destination IP address,IP next-hop,"A,D,E",multiple,no
+130,下列哪一個指令可以顯示路由器統計的netflow 資料。,Show ip flow export,Show ip flow top-talkers,Show ip cache flow,Show mls sampling,Show mls netflow ip,,C,single,no
+131,由SNMP Agent產生的訊息稱為什麼。,GET,INFORM,TRAP,SET,,,C,single,no
+132,DHCP 伺服器如何動態分配IP組態給主機。,Addresses are permanently assigned so that host uses the same address at all times.,"Addresses are assigned for a fixed period of time. At the end of the period, a new request for an address must be made, and another address is then assigned.",Addresses are leased to hosts. A host will usually keep the same address by periodically contacting the DHCP server to renew the lease.,Addresses are allocated after a negotiation between the server and the host to determine the length of the agreement.,,,C,single,no
+133,下列哪三個原因是需要收集公司的Netflow 資料。,To identify application causing congestion.,To authorize user network access.,To report and alert link up / down instances.,"To diagnose slow network performance, bandwidth hogs, and bandwidth utilization.",To detect suboptimal routing in the network.,To confirm the appropriate amout of bandwidth that has been allocated to each Class of Server.,"A,D,F",multiple,no
+134,下列哪一個協定會導致被管理設備的CPU負載。,SNMP,Netflow,WCCP,IP SLA,,,B,single,no
